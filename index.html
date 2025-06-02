@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hmm apa ya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background: linear-gradient(to bottom, #000428, #004e92);
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body class="relative text-white overflow-x-hidden">
+  <!-- Background Image with Blur -->
+  <div class="fixed inset-0 z-0 bg-cover bg-center blur-md brightness-75" style="background-image: url('assets/trioGem3__.png');"></div>
+
+  <!-- Main content wrapper -->
+  <div class="relative z-10">
+
+    <!-- Header -->
+    <nav class="bg-black fixed w-full z-20 top-0 left-0 border-b border-gray-600 backdrop-blur-md">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TheSquead</span>
+        </a>
+        <div class="flex md:order-2">
+          <button type="button" class="text-white border border-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-4 py-2 text-center">Join Us</button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+          <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-700 rounded-lg bg-gray-800 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
+            <li><a href="#" class="block py-2 px-3 text-white hover:text-blue-300">Home</a></li>
+            <li><a href="#joinForm" class="block py-2 px-3 text-white hover:text-blue-300">Join Form!</a></li>
+            <li><a href="#" class="block py-2 px-3 text-white hover:text-blue-300">Null</a></li>
+            <li><a href="#" class="block py-2 px-3 text-white hover:text-blue-300">Null</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Form Section -->
+<section class="text-white px-8 py-20">
+  <h2 class="text-4xl font-extrabold text-center mb-12">Gabung TheSquead</h2>
+  <div class="max-w-xl mx-auto backdrop-blur-md bg-white/10 border border-white/20 p-8 rounded-2xl shadow-2xl">
+    <form id="joinForm" class="space-y-6">
+      <div>
+        <label for="role" class="block mb-2 text-lg font-medium">Pilih Role Kamu</label>
+        <select id="role" name="role" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3">
+          <option value="">-- Pilih Role --</option>
+          <option value="Editor">Editor</option>
+          <option value="Streamer">Streamer</option>
+          <option value="Animator">Animator</option>
+          <option value="Gamer">Gamer</option>
+        </select>
+      </div>
+      <div>
+        <label for="joinDate" class="block mb-2 text-lg font-medium">Tanggal Bergabung</label>
+        <input type="date" id="joinDate" name="joinDate" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" />
+      </div>
+      <button type="button" onclick="tampilkanData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Submit</button>
+    </form>
+
+    <div id="output" class="mt-8 text-lg font-medium text-center text-white-800"></div>
+  </div>
+</section>
+
+<!-- Popup -->
+<div id="popupSuccess" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+  <div id="popupBox" class="bg-white text-black px-8 py-6 rounded-2xl shadow-lg text-xl font-semibold transform transition-all duration-300 ease-out scale-75 opacity-0">
+    Submitted ✅
+  </div>
+</div>
+
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+<script>
+  function tampilkanData() {
+    const role = document.getElementById('role').value;
+    const tanggal = document.getElementById('joinDate').value;
+    const popup = document.getElementById('popupSuccess');
+    const popupBox = document.getElementById('popupBox');
+
+
+    let output = '';
+
+    if (role) {
+      output += `Role yang dipilih: <strong>${role}</strong><br>`;
+    } else {
+      output += `Role belum dipilih.<br>`;
+    }
+
+    if (tanggal) {
+      output += `Tanggal bergabung: <strong>${tanggal}</strong>`;
+    } else {
+      output += `Tanggal belum diisi.`;
+    }
+
+    document.getElementById('output').innerHTML = output;
+
+    // Tampilkan pop-up dengan animasi
+    popup.classList.remove('hidden');
+    setTimeout(() => {
+      popupBox.classList.remove('scale-75', 'opacity-0');
+      popupBox.classList.add('scale-100', 'opacity-100');
+    }, 10);
+
+    // Sembunyikan otomatis setelah 2 detik
+    setTimeout(() => {
+      popupBox.classList.remove('scale-100', 'opacity-100');
+      popupBox.classList.add('scale-75', 'opacity-0');
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 300);
+    }, 2000);
+  }
+</script>
+
+
+  </body>
+</html>

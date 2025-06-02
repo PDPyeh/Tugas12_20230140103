@@ -1,2 +1,2 @@
-![image](https://github.com/user-attachments/assets/b812f1f7-58d3-42e8-9bbe-7d11d18d081d)
+![image](https://github.com/user-attachments/assets/a609f164-608c-4f2e-8b43-988ec560e872)
 hasil ss dari web ini

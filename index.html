@@ -47,6 +47,18 @@
   <div class="max-w-xl mx-auto backdrop-blur-md bg-white/10 border border-white/20 p-8 rounded-2xl shadow-2xl">
     <form id="joinForm" class="space-y-6">
       <div>
+        <label for="nama" class="block mb-2 text-lg font-medium">Nama</label>
+        <input type="text" id="nama" name="nama" placeholder="Masukkan nama kamu" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" />
+      </div>
+      <div>
+        <label for="nim" class="block mb-2 text-lg font-medium">NIM</label>
+        <input type="text" id="nim" name="nim" placeholder="Masukkan NIM kamu" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" />
+      </div>
+      <div>
+        <label for="alamat" class="block mb-2 text-lg font-medium">Alamat</label>
+        <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat kamu" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 resize-none"></textarea>
+      </div>
+      <div>
         <label for="role" class="block mb-2 text-lg font-medium">Pilih Role Kamu</label>
         <select id="role" name="role" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3">
           <option value="">-- Pilih Role --</option>
@@ -67,6 +79,7 @@
   </div>
 </section>
 
+
 <!-- Popup -->
 <div id="popupSuccess" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
   <div id="popupBox" class="bg-white text-black px-8 py-6 rounded-2xl shadow-lg text-xl font-semibold transform transition-all duration-300 ease-out scale-75 opacity-0">
@@ -80,25 +93,29 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 <script>
   function tampilkanData() {
+    const nama = document.getElementById('nama').value.trim();
+    const nim = document.getElementById('nim').value.trim();
+    const alamat = document.getElementById('alamat').value.trim();
     const role = document.getElementById('role').value;
-    const tanggal = document.getElementById('joinDate').value;
-    const popup = document.getElementById('popupSuccess');
-    const popupBox = document.getElementById('popupBox');
+    const joinDate = document.getElementById('joinDate').value;
 
-
-    let output = '';
-
-    if (role) {
-      output += `Role yang dipilih: <strong>${role}</strong><br>`;
-    } else {
-      output += `Role belum dipilih.<br>`;
+    if (!nama || !nim || !alamat || !role || !joinDate) {
+    alert('Tolong isi semua field ya!');
+    return;
     }
 
-    if (tanggal) {
-      output += `Tanggal bergabung: <strong>${tanggal}</strong>`;
-    } else {
-      output += `Tanggal belum diisi.`;
-    }
+    const parts = joinDate.split('-');
+    const tanggal = new Date(parts[0], parts[1] - 1, parts[2]);
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const tanggalFormatted = tanggal.toLocaleDateString('id-ID', options);
+
+    const output = `
+      <p><strong>Nama:</strong> ${nama}</p>
+      <p><strong>NIM:</strong> ${nim}</p>
+      <p><strong>Alamat:</strong> ${alamat}</p>
+      <p><strong>Role:</strong> ${role}</p>
+      <p><strong>Tanggal Bergabung:</strong> ${tanggalFormatted}</p>
+    `;
 
     document.getElementById('output').innerHTML = output;
 
